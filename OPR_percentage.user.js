@@ -6,6 +6,7 @@
 // @author       WacesRedky
 // @match        https://opr.ingress.com/*
 // @grant        unsafeWindow
+// @download     https://github.com/WacesRedky/OPR_plugins/raw/master/OPR_percentage.user.js
 // ==/UserScript==
 
 var spans = document.querySelectorAll('.hidden-xs #player_stats p .gold');
