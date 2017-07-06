@@ -12,11 +12,7 @@
 
 var spans = document.querySelectorAll('.hidden-xs #player_stats p .gold');
 var statistics = {};
-var now = new Date();
-now.setHours(0);
-now.setMinutes(0);
-now.setSeconds(0);
-now.setMilliseconds(0);
+var now = getNow();
 statistics.date = now.valueOf();
 spans.forEach(function(span, i) {
     var value = parseInt(span.innerHTML, 10) || 0;
@@ -61,22 +57,23 @@ spans.forEach(function(span, i) {
     span.innerHTML += append_html;
 });
 
-function saveLastStatistics() {
-    var last_statistics = JSON.stringify(statistics);
-    localStorage.setItem('last_statistics', last_statistics);
-    return last_statistics;
+function getNow() {
+    var now = new Date();
+    now.setHours(0);
+    now.setMinutes(0);
+    now.setSeconds(0);
+    now.setMilliseconds(0);
+    return now;
 }
+
 function getPreviousStatistics() {
     var previous_statistics = localStorage.getItem('previous_statistics');
-    var yesterday = new Date();
+    previous_statistics = JSON.parse(previous_statistics);
+    var yesterday = getNow();
     yesterday.setDate(yesterday.getDate() - 1);
-    yesterday.setHours(0);
-    yesterday.setMinutes(0);
-    yesterday.setSeconds(0);
-    yesterday.setMilliseconds(0);
     if (!previous_statistics || previous_statistics.date < yesterday.valueOf()) {
-        previous_statistics = saveLastStatistics();
-        localStorage.setItem('previous_statistics', previous_statistics);
+        previous_statistics = statistics;
+        localStorage.setItem('previous_statistics', JSON.stringify(previous_statistics));
     }
-    return JSON.parse(previous_statistics);
+    return previous_statistics;
 }
