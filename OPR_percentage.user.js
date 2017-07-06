@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         OPR percentage
 // @namespace    https://opr.ingress.com/
-// @version      0.1
+// @version      0.1.2
 // @description  Percents for statistics.
 // @author       WacesRedky
 // @match        https://opr.ingress.com/*
