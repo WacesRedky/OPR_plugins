@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         OPR percentage
 // @namespace    https://opr.ingress.com/
-// @version      0.1.2
+// @version      0.1.3
 // @description  Percents for statistics.
 // @author       WacesRedky
 // @match        https://opr.ingress.com/*
@@ -56,6 +56,8 @@ spans.forEach(function(span, i) {
     append_html += '<span style="color: grey;">' + percent + '%</span>';
     span.innerHTML += append_html;
 });
+
+$$('#player_stats')[1].previousElementSibling.innerHTML += '<span style="position: absolute;font-size: 10px;top: 28px;">' + (statistics.accepted + statistics.rejected) + '</span>';
 
 function getNow() {
     var now = new Date();
